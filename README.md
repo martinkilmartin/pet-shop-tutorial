@@ -39,3 +39,41 @@ Verify Installation:
 ```sh
 truffle version
 ```
+
+Compile Contracts:
+
+```sh
+truffle compile
+```
+
+Run Tests:
+
+```sh
+truffle test
+```
+
+Migrate Contracts to (Ganache) Ethereum Blockchain:
+
+```sh
+truffle migrate
+```
+
+## [MetaMask](https://github.com/MetaMask)
+
+[Install MetaMask in your web browser](https://metamask.io/).
+
+Import or Create a wallet.
+
+Create Password and Secret Recovery Phrase.
+
+Install `lite-server`:
+
+```sh
+npm install lite-server --save-dev
+```
+
+Start dApp:
+
+```sh
+npm run dev
+```
