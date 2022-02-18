@@ -1,14 +1,14 @@
 # pet-shop-tutorial
+
 Tutorial on the process of building a dApp - an adoption tracking system for a pet shop.
 
 [Source 🏹](https://trufflesuite.com/tutorial/index.html#writing-the-smart-contract)
 
 ## [Ganache](https://trufflesuite.com/ganache/) - ONE CLICK BLOCKCHAIN
 
+**Ganache** is a development environment Ethereum blockchain for deploying contracts, developing applications, and running tests.
 
-__Ganache__ is a development environment Ethereum blockchain for deploying contracts, developing applications, and running tests.
-
- [Download Ganache here](https://trufflesuite.com/ganache/).
+[Download Ganache here](https://trufflesuite.com/ganache/).
 
 Make it executable:
 
@@ -26,7 +26,7 @@ You can choose to `enable` or `disable` _Google Analytics_.
 
 `Quickstart` for a one-click blockchain.
 
-## [Truffle]()
+## [Truffle](https://trufflesuite.com/)
 
 Install Truffle:
 
@@ -77,3 +77,81 @@ Start dApp:
 ```sh
 npm run dev
 ```
+
+## Directory structure
+
+- `contracts/` Solidity smart contract source files
+
+- `migrations/` Truffle blockchain deployment migration files
+
+- `src/` SPdApp
+
+- `test/` Smart contract unit tests
+
+## Configuration
+
+`truffle-config.js`
+
+### General options
+
+`build`
+
+#### Running an external command
+
+```js
+module.exports = {
+  // This will run the `webpack` command on each build.
+  //
+  // The following environment variables will be set when running the command:
+  // WORKING_DIRECTORY: root location of the project
+  // BUILD_DESTINATION_DIRECTORY: expected destination of built assets (important for `truffle serve`)
+  // BUILD_CONTRACTS_DIRECTORY: root location of your build contract files (.sol.js)
+  //
+  build: "webpack"
+}
+```
+
+#### Providing a custom function
+
+```js
+module.exports = {
+  build: function(options, callback) {
+     // Do something when a build is required. `options` contains these values:
+     //
+     // working_directory: root location of the project
+     // contracts_directory: root directory of .sol files
+     // destination_directory: directory where truffle expects the built assets (important for `truffle serve`)
+  }
+}
+
+```
+
+#### Creating a custom module
+
+```js
+var DefaultBuilder = require("truffle-default-builder");
+module.exports = {
+  build: new DefaultBuilder(...) // specify the default builder configuration here.
+}
+```
+
+#### Bootstrapping your application
+
+```js
+// Step 1: Get a contract into my application
+var json = require("./build/contracts/MyContract.json");
+
+// Step 2: Turn that contract into an abstraction I can use
+var contract = require("@truffle/contract");
+var MyContract = contract(json);
+
+// Step 3: Provision the contract with a web3 provider
+MyContract.setProvider(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
+
+// Step 4: Use the contract!
+MyContract.deployed().then(function(deployed) {
+  return deployed.someFunction();
+});
+```
+
+`networks`
