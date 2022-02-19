@@ -154,4 +154,49 @@ MyContract.deployed().then(function(deployed) {
 });
 ```
 
-`networks`
+## Layout of a Solidity Source File
+
+`// SPDX-License-Identifier: MIT`
+
+`pragma solidity ^x.y.z;`
+
+`pragma solidity >=0.4.0 <0.9.0;`
+
+`import * as symbolName from "filename";`
+
+`import "filename" as symbolName;`
+
+`import {symbol1 as alias, symbol2} from "filename";`
+
+```js
+// This is a single-line comment.
+
+/*
+This is a
+multi-line comment.
+*/
+```
+
+```js
+contract SampleContract {
+  // Integers
+  int8 signed8BitsStateVar;
+  int16 signed16BitsStateVar;
+  int24 signed24BitsStateVar;
+  // ...
+  int248 signed248BitsStateVar;
+  int256 signed256BitsStateVar;
+  uint8 unSigned8BitsStateVar;
+  uint16 unSigned16BitsStateVar;
+  uint24 unSigned24BitsStateVar;
+  // ...
+  uint248 unSigned248BitsStateVar;
+  uint256 unSigned256BitsStateVar;
+  // Booleans
+  bool youAreGreat = true;
+  bool youStink = false;
+  // Address
+  address etherAddress20Byte;
+  address payable payableEtherAddress20Byte;
+}
+```
